@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.gogo.simulatedextra.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "simulatedextra.refmap.json",
+  "mixins": [
+    "CenteredWheelMountPhysicsMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

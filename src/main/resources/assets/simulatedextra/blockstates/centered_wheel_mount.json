@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "simulatedextra:block/centered_wheel_mount", "y": 90 },
+    "facing=south": { "model": "simulatedextra:block/centered_wheel_mount", "y": 270 },
+    "facing=east":  { "model": "simulatedextra:block/centered_wheel_mount" },
+    "facing=west":  { "model": "simulatedextra:block/centered_wheel_mount", "y": 180 }
+  }
+}

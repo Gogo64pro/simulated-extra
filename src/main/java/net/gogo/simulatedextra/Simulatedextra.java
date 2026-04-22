@@ -1,6 +1,5 @@
 package net.gogo.simulatedextra;
 
-import com.tterrag.registrate.Registrate;
 import dev.ryanhcode.offroad.Offroad;
 import net.gogo.simulatedextra.content.centered_wheel_mount.CenteredWheelMountRenderer;
 import net.gogo.simulatedextra.datagen.Recipe;

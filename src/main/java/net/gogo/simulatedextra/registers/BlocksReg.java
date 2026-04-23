@@ -1,5 +1,6 @@
 package net.gogo.simulatedextra.registers;
 
+import com.simibubi.create.infrastructure.config.CStress;
 import dev.ryanhcode.offroad.Offroad;
 import net.gogo.simulatedextra.Simulatedextra;
 import net.gogo.simulatedextra.content.centered_wheel_mount.CenteredWheelMountBlock;

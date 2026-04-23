@@ -1,14 +1,9 @@
 package net.gogo.simulatedextra;
 
-import com.simibubi.create.Create;
-import com.simibubi.create.content.kinetics.base.IRotate;
 import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipModifier;
-import com.simibubi.create.infrastructure.config.AllConfigs;
-import com.simibubi.create.infrastructure.config.CStress;
 import dev.ryanhcode.offroad.Offroad;
-import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
 import net.createmod.catnip.lang.FontHelper;
 import net.gogo.simulatedextra.content.centered_wheel_mount.CenteredWheelMountRenderer;
 import net.gogo.simulatedextra.datagen.Recipe;
@@ -16,7 +11,6 @@ import net.gogo.simulatedextra.registers.BlockEntityTypes;
 import net.gogo.simulatedextra.registers.BlocksReg;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;

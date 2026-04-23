@@ -57,8 +57,8 @@ public class CenteredWheelMountRenderer extends KineticBlockEntityRenderer<Cente
                 .getOpposite();
         final BlockState blockState = be.getBlockState();
 
-        final SuperByteBuffer diodeLeft   = CachedBuffers.partial(OffroadPartialModels.DIODE_LEFT,    blockState);
-        final SuperByteBuffer diodeRight  = CachedBuffers.partial(OffroadPartialModels.DIODE_RIGHT,   blockState);
+        //final SuperByteBuffer diodeLeft   = CachedBuffers.partial(OffroadPartialModels.DIODE_LEFT,    blockState);
+        //final SuperByteBuffer diodeRight  = CachedBuffers.partial(OffroadPartialModels.DIODE_RIGHT,   blockState);
         final SuperByteBuffer teleOuter   = CachedBuffers.partial(OffroadPartialModels.TELE_OUTER,    blockState);
         final SuperByteBuffer teleInner   = CachedBuffers.partial(OffroadPartialModels.TELE_INNER,    blockState);
         final SuperByteBuffer teleMount   = CachedBuffers.partial(OffroadPartialModels.TELE_MOUNT,    blockState);
@@ -178,12 +178,12 @@ public class CenteredWheelMountRenderer extends KineticBlockEntityRenderer<Cente
                 .renderInto(ms, vb);
         ms.popPose();
 
-        diodeLeft.light(light)
-                .color(SimColors.redstone(be.getClientSteeringSignalLeft() / 15.0f))
-                .renderInto(ms, vb);
-        diodeRight.light(light)
-                .color(SimColors.redstone(be.getClientSteeringSignalRight() / 15.0f))
-                .renderInto(ms, vb);
+        //diodeLeft.light(light)
+        //        .color(SimColors.redstone(be.getClientSteeringSignalLeft() / 15.0f))
+        //        .renderInto(ms, vb);
+        //diodeRight.light(light)
+        //        .color(SimColors.redstone(be.getClientSteeringSignalRight() / 15.0f))
+        //        .renderInto(ms, vb);
 
         ms.popPose();
     }

@@ -1,25 +1,18 @@
 package net.gogo.simulatedextra;
 
-import com.simibubi.create.foundation.item.ItemDescription;
-import com.simibubi.create.foundation.item.KineticStats;
-import com.simibubi.create.foundation.item.TooltipModifier;
 import dev.ryanhcode.offroad.Offroad;
-import net.createmod.catnip.lang.FontHelper;
 import net.gogo.simulatedextra.content.centered_wheel_mount.CenteredWheelMountRenderer;
 import net.gogo.simulatedextra.datagen.Recipe;
 import net.gogo.simulatedextra.registers.BlockEntityTypes;
 import net.gogo.simulatedextra.registers.BlocksReg;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
-import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
-import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,7 +33,6 @@ public class Simulatedextra {
         modEventBus.addListener(this::onServerSetup);
         modEventBus.addListener(this::onCommonSetup);
         modEventBus.addListener(this::onDataSetup);
-        NeoForge.EVENT_BUS.addListener(this::onTooltip);
         BlocksReg.BLOCKS.register(modEventBus);
         BlocksReg.ITEMS.register(modEventBus);
         BlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
@@ -64,14 +56,4 @@ public class Simulatedextra {
         generator.addProvider(event.includeServer(),
                 new Recipe(generator.getPackOutput(), event.getLookupProvider()));
     }
-    public void onTooltip(ItemTooltipEvent event) {
-        Item item = event.getItemStack().getItem();
-
-        if (item == BlocksReg.CENTERED_WHEEL_MOUNT_ITEM.get()) {
-            TooltipModifier modifier = new ItemDescription
-                    .Modifier(item, FontHelper.Palette.STANDARD_CREATE)
-                    .andThen(TooltipModifier.mapNull(KineticStats.create(item)));
-
-            modifier.modify(event);
-        }
-    }}
+}

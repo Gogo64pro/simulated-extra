@@ -1,12 +1,17 @@
 package net.gogo.simulatedextra;
 
+import com.simibubi.create.AllBlockEntityTypes;
+import com.simibubi.create.foundation.data.CreateRegistrate;
 import dev.ryanhcode.offroad.Offroad;
 import net.gogo.simulatedextra.content.centered_wheel_mount.CenteredWheelMountRenderer;
 import net.gogo.simulatedextra.datagen.Recipe;
+import net.gogo.simulatedextra.mixin.BlockEntityTypeAccessor;
 import net.gogo.simulatedextra.registers.BlockEntityTypes;
 import net.gogo.simulatedextra.registers.BlocksReg;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -17,12 +22,13 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static net.gogo.simulatedextra.registers.BlocksReg.CENTERED_WHEEL_MOUNT_ITEM;
+import java.util.HashSet;
 
 @Mod(Simulatedextra.ID)
 public class Simulatedextra {
 
     public static final String ID = "simulatedextra";
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ID);
 
     // the logger for our mod
     public static final Logger LOGGER = LogManager.getLogger(ID);
@@ -33,9 +39,9 @@ public class Simulatedextra {
         modEventBus.addListener(this::onServerSetup);
         modEventBus.addListener(this::onCommonSetup);
         modEventBus.addListener(this::onDataSetup);
-        BlocksReg.BLOCKS.register(modEventBus);
-        BlocksReg.ITEMS.register(modEventBus);
-        BlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
+        REGISTRATE.registerEventListeners(modEventBus);
+        BlocksReg.register();
+        BlockEntityTypes.register();
     }
 
     private void onClientSetup(FMLClientSetupEvent event) {
@@ -49,7 +55,18 @@ public class Simulatedextra {
     }
 
     public void onCommonSetup(FMLCommonSetupEvent event) {
-        Offroad.getRegistrate().addExtraItem(CENTERED_WHEEL_MOUNT_ITEM.getId());
+        //event.enqueueWork(() -> {
+        //    Offroad.getRegistrate().addExtraItem(BlocksReg.CENTERED_WHEEL_MOUNT.asItem().getId());
+//
+        //    BlockEntityType<?> redstoneLinkType = AllBlockEntityTypes.REDSTONE_LINK.get();
+        //    Block linkingRedstoneLink = BlocksReg.LINKING_REDSTONE_LINK.get();
+        //    if (!redstoneLinkType.isValid(linkingRedstoneLink.defaultBlockState())) {
+        //        BlockEntityTypeAccessor accessor = (BlockEntityTypeAccessor) (Object) redstoneLinkType;
+        //        HashSet<Block> validBlocks = new HashSet<>(accessor.simulatedextra$getValidBlocks());
+        //        validBlocks.add(linkingRedstoneLink);
+        //        accessor.simulatedextra$setValidBlocks(validBlocks);
+        //    }
+        //});
     }
     private void onDataSetup(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();

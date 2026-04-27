@@ -34,6 +34,6 @@ public class Recipe extends RecipeProvider {
 
     @Override
     protected void buildRecipes(@NotNull RecipeOutput output) {
-        swappable(output, WHEEL_MOUNT.get(), BlocksReg.CENTERED_WHEEL_MOUNT_ITEM.get());
+        swappable(output, WHEEL_MOUNT.get(), BlocksReg.CENTERED_WHEEL_MOUNT.asItem());
     }
 }

@@ -1,17 +1,12 @@
 package net.gogo.simulatedextra;
 
-import com.simibubi.create.AllBlockEntityTypes;
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import dev.ryanhcode.offroad.Offroad;
 import net.gogo.simulatedextra.content.centered_wheel_mount.CenteredWheelMountRenderer;
 import net.gogo.simulatedextra.datagen.Recipe;
-import net.gogo.simulatedextra.mixin.BlockEntityTypeAccessor;
 import net.gogo.simulatedextra.registers.BlockEntityTypes;
 import net.gogo.simulatedextra.registers.BlocksReg;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -21,8 +16,6 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.HashSet;
 
 @Mod(Simulatedextra.ID)
 public class Simulatedextra {

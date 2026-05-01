@@ -2,10 +2,16 @@ package net.gogo.simulatedextra.content.linking_redstone_link;
 
 import com.simibubi.create.content.redstone.link.LinkBehaviour;
 import com.simibubi.create.content.redstone.link.RedstoneLinkBlockEntity;
+import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
+import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollValueBehaviour;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.neoforged.neoforge.common.property.Properties;
 import org.apache.commons.lang3.tuple.Pair;
 import net.gogo.simulatedextra.IFrequencyAccess;
 import net.minecraft.core.HolderLookup;
@@ -15,8 +21,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
 
-public class LinkingRedstoneLinkBlockEntity extends RedstoneLinkBlockEntity {
+import java.util.List;
 
+public class LinkingRedstoneLinkBlockEntity extends RedstoneLinkBlockEntity {
+    private IdLinkBehaviour idLink;
     public LinkingRedstoneLinkBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
@@ -24,7 +32,7 @@ public class LinkingRedstoneLinkBlockEntity extends RedstoneLinkBlockEntity {
     @Override
     protected void createLink() {
         Pair<ValueBoxTransform, ValueBoxTransform> noSlots =
-                Pair.of(IdLinkBehaviour.NOOP, IdLinkBehaviour.NOOP);
+                Pair.of(new IdValueBoxTransform(getBlockState().getValue(BlockStateProperties.FACING)), IdLinkBehaviour.NOOP);
 
         IFrequencyAccess access = (IFrequencyAccess) this;
         access.simulatedextra$setLink(access.simulatedextra$isTransmitter()
@@ -37,12 +45,12 @@ public class LinkingRedstoneLinkBlockEntity extends RedstoneLinkBlockEntity {
         CompoundTag tag = new CompoundTag();
         tag.putInt("Id", getSavedId());
 
-        ItemStack carrier = new ItemStack(Items.PAPER);
+        ItemStack carrier = new ItemStack(Items.STICK);
         carrier.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
         
         IFrequencyAccess access = (IFrequencyAccess) this;
-        access.simulatedextra$getLink().setFrequency(false, ItemStack.EMPTY);
-        access.simulatedextra$getLink().setFrequency(true, carrier);
+        access.simulatedextra$getLink().setFrequency(true, ItemStack.EMPTY);
+        access.simulatedextra$getLink().setFrequency(false, carrier);
     }
 
     private int savedId = -1;
@@ -71,4 +79,24 @@ public class LinkingRedstoneLinkBlockEntity extends RedstoneLinkBlockEntity {
         if (access.simulatedextra$getLink() != null)
             applyIdFrequency();
     }
+    ScrollValueBehaviour scrollValue;
+
+    //@Override
+    //public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
+    //    idLink = new IdLinkBehaviour(this, 0, getBlockState().getValue(BlockStateProperties.FACING));
+    //    behaviours.add(idLink);
+//
+    //    scrollValue = new ScrollValueBehaviour(
+    //            Component.literal("Frequency"),
+    //            this,
+    //            new IdValueBoxTransform(getBlockState().getValue(BlockStateProperties.FACING).getOpposite())
+    //    );
+    //    scrollValue.between(-1, Integer.MAX_VALUE);
+    //    scrollValue.withCallback(id -> {
+    //        idLink.setFrequencyId(id);
+    //        setId(id);
+    //    });
+    //    scrollValue.setValue(0);
+    //    behaviours.add(scrollValue);
+    //}
 }

@@ -7,6 +7,7 @@ import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
 import net.createmod.catnip.data.Couple;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
@@ -19,7 +20,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.util.Stack;
 
 public class IdLinkBehaviour extends LinkBehaviour {
     private int frequencyId;
@@ -31,10 +31,15 @@ public class IdLinkBehaviour extends LinkBehaviour {
 
         @Override
         public void rotate(LevelAccessor level, BlockPos pos, BlockState state, PoseStack ms) {}
+
+        @Override
+        public boolean shouldRender(LevelAccessor level, BlockPos pos, BlockState state) {
+            return false;
+        }
     };
 
-    protected IdLinkBehaviour(SmartBlockEntity be, int id) {
-        super(be, Pair.of(NOOP, NOOP));
+    protected IdLinkBehaviour(SmartBlockEntity be, int id, Direction direction) {
+        super(be, Pair.of(new IdValueBoxTransform(direction), NOOP));
         frequencyId = id;
     }
 

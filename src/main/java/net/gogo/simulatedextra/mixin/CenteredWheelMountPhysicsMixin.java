@@ -4,14 +4,13 @@ import dev.ryanhcode.offroad.content.blocks.wheel_mount.WheelMountBlockEntity;
 import dev.ryanhcode.offroad.content.components.TireLike;
 import dev.ryanhcode.offroad.index.OffroadDataComponents;
 import net.gogo.simulatedextra.content.centered_wheel_mount.CenteredWheelMountBlockEntity;
-import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
-
-import static net.gogo.simulatedextra.content.centered_wheel_mount.CenteredWheelMountRenderer.VERTICAL_WHEEL_OFFSET;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 
 @Mixin(value = WheelMountBlockEntity.class, remap = false)
@@ -28,7 +27,7 @@ public abstract class CenteredWheelMountPhysicsMixin {
             ItemStack item = be.getHeldItem();
             TireLike tire = item.get(OffroadDataComponents.TIRE);
             float radius = tire != null ? tire.radius() : 0.0f;
-            return Vec3.atCenterOf(be.getBlockPos()).subtract(0, radius - VERTICAL_WHEEL_OFFSET, 0);
+            return Vec3.atCenterOf(be.getBlockPos()).subtract(0, radius - be.getOffset() / 16.0, 0);
         }
         return wheelPosCenter;
     }
@@ -43,8 +42,23 @@ public abstract class CenteredWheelMountPhysicsMixin {
             ItemStack item = be.getHeldItem();
             TireLike tire = item.get(OffroadDataComponents.TIRE);
             float radius = tire != null ? tire.radius() : 0.0f;
-            return Vec3.atCenterOf(be.getBlockPos()).subtract(0, radius - VERTICAL_WHEEL_OFFSET, 0);
+            return Vec3.atCenterOf(be.getBlockPos()).subtract(0, radius - be.getOffset() / 16.0, 0);
         }
         return localPos;
+    }
+
+    @Redirect(
+            method = "computeMaxExtension",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/util/Mth;clamp(DDD)D",
+                    remap = true
+            )
+    )
+    private double modifyExtensionClampFloor(double value, double min, double max) {
+        if ((Object) this instanceof CenteredWheelMountBlockEntity be) {
+            return -0.45 - (be.getOffset() - 7) / 16.0;
+        }
+        return Mth.clamp(value, min, max);
     }
 }

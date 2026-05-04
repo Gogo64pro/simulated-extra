@@ -34,7 +34,6 @@ public class CenteredWheelMountRenderer extends KineticBlockEntityRenderer<Cente
     private static final double WHEEL_PIVOT_OFFSET_HOR       = 10.0 / 16.0;
     private static final double SPRING_WHEEL_PIVOT_OFFSET_HOR = 12.0 / 16.0;
     private static final double SPRING_WHEEL_PIVOT_OFFSET_VER = -2.0 / 16.0;
-    public static final double VERTICAL_WHEEL_OFFSET = 7.0 / 16.0;
 
     public CenteredWheelMountRenderer(BlockEntityRendererProvider.Context context) {
         super(context);
@@ -74,10 +73,10 @@ public class CenteredWheelMountRenderer extends KineticBlockEntityRenderer<Cente
         final TireLike tireLike = itemStack.get(OffroadDataComponents.TIRE);
         final float radius = tireLike != null ? tireLike.radius() : 0.0f;
 
-        final double verticalWheelPosition = -be.getLerpedExtension(partialTicks) - radius + VERTICAL_WHEEL_OFFSET;
+        final double verticalWheelPosition = -(be.getLerpedExtension(partialTicks) - be.getOffset() / 16.0) - radius;
 
         final double teleMountHor = 0.0 / 16.0;
-        final double teleMountVer = -6.0 / 16.0;
+        final double teleMountVer = -6.0 / 16.0 + be.getOffset() / 16.0;
 
         final double springMountHor = 7.0 / 16.0;
         final double springMountVer = 7.0 / 16.0;
@@ -104,7 +103,7 @@ public class CenteredWheelMountRenderer extends KineticBlockEntityRenderer<Cente
         ms.pushPose();
 
         ms.pushPose();
-        ms.translate(0.0, -6.0 / 16.0, 0.0);
+        ms.translate(0.0, -6.0 / 16.0 + be.getOffset() / 16.0, 0.0);
         ms.translate(0.5, 0.5, 0.5);
         ms.mulPose(Axis.XP.rotation((float) teleAngle));
         ms.translate(-0.5, -0.5, -0.5);

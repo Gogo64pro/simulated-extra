@@ -25,23 +25,5 @@ public class CenteredWheelMountBlock extends WheelMountBlock {
         var direction = state.getValue(HORIZONTAL_FACING);
         return face == direction || face == direction.getOpposite();
     }
-//    @Override
-//    public void appendHoverText(@NotNull ItemStack stack, Item. @NotNull TooltipContext context,
-//                                @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
-//
-//        if (flag.isAdvanced()) {
-//            tooltip.add(Component.translatable("block.mymod.my_block.tooltip")
-//                    .withStyle(ChatFormatting.GRAY));
-//        } else {
-//            tooltip.add(TooltipHelper.holdShift(FontHelper.Palette.STANDARD_CREATE, false));
-//        }
-//
-//        TooltipModifier modifier = KineticStats.create(this.asItem());
-//        if (modifier != null) {
-//            modifier.modify(new ItemTooltipEvent(stack, null, tooltip, flag, context));
-//        }
-//
-//        super.appendHoverText(stack, context, tooltip, flag);
-//    }
 }
 

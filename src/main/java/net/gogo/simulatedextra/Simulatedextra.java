@@ -3,11 +3,9 @@ package net.gogo.simulatedextra;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import dev.simulated_team.simulated.registrate.SimulatedRegistrate;
 import net.gogo.simulatedextra.content.centered_wheel_mount.CenteredWheelMountRenderer;
-import net.gogo.simulatedextra.datagen.Recipe;
 import net.gogo.simulatedextra.registers.BlockEntityTypes;
 import net.gogo.simulatedextra.registers.BlocksReg;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -16,7 +14,6 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
-import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -38,7 +35,6 @@ public class Simulatedextra {
         modEventBus.addListener(this::onClientSetup);
         modEventBus.addListener(this::onServerSetup);
         modEventBus.addListener(this::onCommonSetup);
-        modEventBus.addListener(this::onDataSetup);
         modEventBus.addListener(this::onCreative);
         REGISTRATE.registerEventListeners(modEventBus);
         BlocksReg.register();
@@ -63,11 +59,6 @@ public class Simulatedextra {
 
     public void onCommonSetup(FMLCommonSetupEvent event) {
 
-    }
-    private void onDataSetup(GatherDataEvent event) {
-        DataGenerator generator = event.getGenerator();
-        generator.addProvider(event.includeServer(),
-                new Recipe(generator.getPackOutput(), event.getLookupProvider()));
     }
     private void onCreative(BuildCreativeModeTabContentsEvent event){
 

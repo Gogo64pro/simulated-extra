@@ -30,8 +30,8 @@ import org.joml.Vector2d;
 public class CenteredWheelMountRenderer extends KineticBlockEntityRenderer<CenteredWheelMountBlockEntity> {
 
 
-    private static final double HORIZONTAL_WHEEL_POSITION    =  0.0 / 16.0;
-    private static final double WHEEL_PIVOT_OFFSET_HOR       = 10.0 / 16.0;
+    private static final double HORIZONTAL_WHEEL_POSITION = 0.0 / 16.0;
+    private static final double WHEEL_PIVOT_OFFSET_HOR = 10.0 / 16.0;
     private static final double SPRING_WHEEL_PIVOT_OFFSET_HOR = 12.0 / 16.0;
     private static final double SPRING_WHEEL_PIVOT_OFFSET_VER = -2.0 / 16.0;
 
@@ -56,14 +56,14 @@ public class CenteredWheelMountRenderer extends KineticBlockEntityRenderer<Cente
 
         //final SuperByteBuffer diodeLeft   = CachedBuffers.partial(OffroadPartialModels.DIODE_LEFT,    blockState);
         //final SuperByteBuffer diodeRight  = CachedBuffers.partial(OffroadPartialModels.DIODE_RIGHT,   blockState);
-        final SuperByteBuffer teleOuter   = CachedBuffers.partial(OffroadPartialModels.TELE_OUTER,    blockState);
-        final SuperByteBuffer teleInner   = CachedBuffers.partial(OffroadPartialModels.TELE_INNER,    blockState);
-        final SuperByteBuffer teleMount   = CachedBuffers.partial(OffroadPartialModels.TELE_MOUNT,    blockState);
-        final SuperByteBuffer springTop    = CachedBuffers.partial(OffroadPartialModels.SPRING_UPPER,  blockState);
-        final SuperByteBuffer springBottom = CachedBuffers.partial(OffroadPartialModels.SPRING_LOWER,  blockState);
+        final SuperByteBuffer teleOuter = CachedBuffers.partial(OffroadPartialModels.TELE_OUTER, blockState);
+        final SuperByteBuffer teleInner = CachedBuffers.partial(OffroadPartialModels.TELE_INNER, blockState);
+        final SuperByteBuffer teleMount = CachedBuffers.partial(OffroadPartialModels.TELE_MOUNT, blockState);
+        final SuperByteBuffer springTop = CachedBuffers.partial(OffroadPartialModels.SPRING_UPPER, blockState);
+        final SuperByteBuffer springBottom = CachedBuffers.partial(OffroadPartialModels.SPRING_LOWER, blockState);
         final SuperByteBuffer springMiddle = CachedBuffers.partial(OffroadPartialModels.SPRING_MIDDLE, blockState);
 
-        final double wheelPivotOffsetHor       = WHEEL_PIVOT_OFFSET_HOR;
+        final double wheelPivotOffsetHor = WHEEL_PIVOT_OFFSET_HOR;
         final double springWheelPivotOffsetHor = SPRING_WHEEL_PIVOT_OFFSET_HOR;
         final double springWheelPivotOffsetVer = SPRING_WHEEL_PIVOT_OFFSET_VER;
 
@@ -81,12 +81,12 @@ public class CenteredWheelMountRenderer extends KineticBlockEntityRenderer<Cente
         final double springMountHor = 7.0 / 16.0;
         final double springMountVer = 7.0 / 16.0;
 
-        final double teleAngle    = Math.atan2(verticalWheelPosition - teleMountVer,
+        final double teleAngle = Math.atan2(verticalWheelPosition - teleMountVer,
                 horizontalWheelPosition - wheelPivotOffsetHor - teleMountHor);
         final double teleDistance = new Vector2d(verticalWheelPosition - teleMountVer,
                 horizontalWheelPosition - wheelPivotOffsetHor - teleMountHor).length();
 
-        final double springAngle    = Math.atan2(
+        final double springAngle = Math.atan2(
                 verticalWheelPosition - springWheelPivotOffsetVer - springMountVer,
                 horizontalWheelPosition - springWheelPivotOffsetHor - springMountHor);
         final double springDistance = new Vector2d(
@@ -94,6 +94,7 @@ public class CenteredWheelMountRenderer extends KineticBlockEntityRenderer<Cente
                 horizontalWheelPosition - springWheelPivotOffsetHor - springMountHor).length();
 
         ms.pushPose();
+
         TransformStack.of(ms)
                 .center()
                 .rotateYDegrees(AngleHelper.horizontalAngle(direction))
@@ -111,6 +112,7 @@ public class CenteredWheelMountRenderer extends KineticBlockEntityRenderer<Cente
         ms.translate(0.0, 0.0, -(teleDistance - 1.0));
         teleInner.light(light).renderInto(ms, vb);
         ms.popPose();
+
 
         ms.pushPose();
         ms.translate(0.0, verticalWheelPosition, 26.0 / 16.0 - horizontalWheelPosition);

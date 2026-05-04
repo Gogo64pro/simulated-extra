@@ -30,6 +30,7 @@ public class BlocksReg {
                     .simpleItem()
                     .register();
 
+
     public static final BlockEntry<LinkingRedstoneLinkBlock> LINKING_REDSTONE_LINK =
             Simulatedextra.REGISTRATE.block("linking_redstone_link", LinkingRedstoneLinkBlock::new)
                     .initialProperties(SharedProperties::wooden)

@@ -1,8 +1,11 @@
 package dev.ryanhcode.offroad.content.blocks.wheel_mount;
 
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
+import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+
+import java.util.List;
 
 
 public class WheelMountBlockEntity extends KineticBlockEntity {
@@ -29,4 +32,9 @@ public class WheelMountBlockEntity extends KineticBlockEntity {
     }
     public double getLerpedExtension(float pt){return 0;}
     public float getLerpedAngle(float pt){return 0;}
+
+    @Override
+    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
+        super.addBehaviours(behaviours);
+    }
 }

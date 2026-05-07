@@ -1,4 +1,4 @@
-package net.gogo.simulatedextra;
+package net.gogo.simulatedextra.Imixin;
 
 import com.simibubi.create.content.redstone.link.LinkBehaviour;
 

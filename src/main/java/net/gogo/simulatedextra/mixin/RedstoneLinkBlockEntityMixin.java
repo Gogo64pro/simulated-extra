@@ -2,7 +2,7 @@ package net.gogo.simulatedextra.mixin;
 
 import com.simibubi.create.content.redstone.link.LinkBehaviour;
 import com.simibubi.create.content.redstone.link.RedstoneLinkBlockEntity;
-import net.gogo.simulatedextra.IFrequencyAccess;
+import net.gogo.simulatedextra.Imixin.IFrequencyAccess;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "simulatedextra:centered_wheel_mount"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "offroad:wheel_mount"
+  }
+}

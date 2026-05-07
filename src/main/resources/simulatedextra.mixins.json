@@ -5,8 +5,11 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "simulatedextra.refmap.json",
   "mixins": [
+    "CenteredWheelMountMixin",
     "CenteredWheelMountPhysicsMixin",
-    "RedstoneLinkBlockEntityMixin"
+    "RedstoneLinkBlockEntityMixin",
+    "SuspensionStrengthBehaviour",
+    "SuspensionStrengthValueBoxMixin"
   ],
   "client": [
   ],

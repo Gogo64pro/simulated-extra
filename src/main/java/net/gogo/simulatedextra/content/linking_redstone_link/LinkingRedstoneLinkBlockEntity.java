@@ -1,27 +1,20 @@
 package net.gogo.simulatedextra.content.linking_redstone_link;
 
-import com.simibubi.create.content.redstone.link.LinkBehaviour;
 import com.simibubi.create.content.redstone.link.RedstoneLinkBlockEntity;
-import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
 import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollValueBehaviour;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.neoforged.neoforge.common.property.Properties;
 import org.apache.commons.lang3.tuple.Pair;
-import net.gogo.simulatedextra.IFrequencyAccess;
+import net.gogo.simulatedextra.Imixin.IFrequencyAccess;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
-
-import java.util.List;
 
 public class LinkingRedstoneLinkBlockEntity extends RedstoneLinkBlockEntity {
     private IdLinkBehaviour idLink;

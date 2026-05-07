@@ -6,6 +6,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '2.0.0'
 }
 
+
 version = mod_version
 group = mod_group_id
 
@@ -45,6 +46,16 @@ base {
 }
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 kotlin.jvmToolchain(21)
+
+sourceSets {
+    stubs {
+        java { srcDir 'src/stubs/java' }
+        compileClasspath += sourceSets.main.compileClasspath
+    }
+    main {
+        compileClasspath = sourceSets.stubs.output + compileClasspath
+    }
+}
 
 neoForge {
     // Specify the version of NeoForge to use.
@@ -99,10 +110,6 @@ neoForge {
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
             systemProperty 'forge.logging.markers', 'REGISTRIES'
-
-            // Recommended logging level for the console
-            // You can set various levels here.
-            // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             logLevel = org.slf4j.event.Level.DEBUG
         }
     }
@@ -122,14 +129,16 @@ neoForge {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 
-
 dependencies {
     compileOnly("dev.ryanhcode.sable:sable-neoforge-${minecraft_version}:${sable_version}")
     implementation("dev.ryanhcode.offroad:offroad-neoforge-${minecraft_version}:${offroad_version}")
     implementation("dev.simulated_team.simulated:simulated-neoforge-${minecraft_version}:${simulated_version}")
     implementation("dev.eriksonn.aeronautics:aeronautics-neoforge-${minecraft_version}:${aeronautics_version}")
     compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}")
-    compileOnly("com.tterrag.registrate:Registrate:${registrate_version}")}
+    compileOnly("com.tterrag.registrate:Registrate:${registrate_version}")
+    annotationProcessor("dev.ryanhcode.offroad:offroad-neoforge-${minecraft_version}:${offroad_version}")
+    annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
+}
 
 
 
@@ -158,6 +167,11 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
 sourceSets.main.resources.srcDir generateModMetadata
 // To avoid having to run "generateModMetadata" manually, make it run on every project reload
 neoForge.ideSyncTask generateModMetadata
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs += [
+            "-AoutRefMapFile=${layout.buildDirectory.file("resources/main/simulatedextra.refmap.json").get().asFile}"
+    ]
+}
 
 // Example configuration to allow publishing using the maven-publish plugin
 publishing {

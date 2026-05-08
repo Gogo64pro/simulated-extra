@@ -3,6 +3,7 @@ package net.gogo.simulatedextra;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import dev.simulated_team.simulated.registrate.SimulatedRegistrate;
 import net.gogo.simulatedextra.content.centered_wheel_mount.CenteredWheelMountRenderer;
+import net.gogo.simulatedextra.content.motorcycle_wheel_mount.MotoWheelMountRenderer;
 import net.gogo.simulatedextra.registers.BlockEntityTypes;
 import net.gogo.simulatedextra.registers.BlocksReg;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -51,6 +52,10 @@ public class Simulatedextra {
         BlockEntityRenderers.register(
                 BlockEntityTypes.CENTERED_WHEEL_MOUNT.get(),
                 CenteredWheelMountRenderer::new
+        );
+        BlockEntityRenderers.register(
+                BlockEntityTypes.MOTO_WHEEL_MOUNT.get(),
+                MotoWheelMountRenderer::new
         );
     }
     private void onServerSetup(FMLDedicatedServerSetupEvent event) {

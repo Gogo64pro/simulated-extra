@@ -7,6 +7,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import net.gogo.simulatedextra.Simulatedextra;
 import net.gogo.simulatedextra.content.centered_wheel_mount.CenteredWheelMountBlock;
 import net.gogo.simulatedextra.content.linking_redstone_link.LinkingRedstoneLinkBlock;
+import net.gogo.simulatedextra.content.motorcycle_wheel_mount.MotoWheelMountBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
 
@@ -29,6 +30,20 @@ public class BlocksReg {
                     )
                     .simpleItem()
                     .register();
+
+    public static final BlockEntry<MotoWheelMountBlock> MOTO_WHEEL_MOUNT =
+            Simulatedextra.REGISTRATE.block("moto_wheel_mount", MotoWheelMountBlock::new)
+                    .properties(properties -> properties
+                            .mapColor(MapColor.COLOR_GRAY)
+                            .noOcclusion()
+                            .isRedstoneConductor((state, level, pos) -> false)
+                            .strength(3.5f, 3.5f)
+                            .sound(SoundType.STONE)
+                            .requiresCorrectToolForDrops()
+                    )
+                    .simpleItem()
+                    .register();
+
 
 
     public static final BlockEntry<LinkingRedstoneLinkBlock> LINKING_REDSTONE_LINK =

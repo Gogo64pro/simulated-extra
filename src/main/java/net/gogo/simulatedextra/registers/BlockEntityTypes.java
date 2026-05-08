@@ -5,6 +5,7 @@ import net.gogo.simulatedextra.Simulatedextra;
 import net.gogo.simulatedextra.content.centered_wheel_mount.CenteredWheelMountBlockEntity;
 import net.gogo.simulatedextra.content.linking_redstone_link.IdLinkBlockEntityRenderer;
 import net.gogo.simulatedextra.content.linking_redstone_link.LinkingRedstoneLinkBlockEntity;
+import net.gogo.simulatedextra.content.motorcycle_wheel_mount.MotoWheelMountBlockEntity;
 
 public class BlockEntityTypes {
     private BlockEntityTypes() {
@@ -13,6 +14,11 @@ public class BlockEntityTypes {
     public static final BlockEntityEntry<CenteredWheelMountBlockEntity> CENTERED_WHEEL_MOUNT =
             Simulatedextra.REGISTRATE.blockEntity("centered_wheel_mount", CenteredWheelMountBlockEntity::new)
                     .validBlocks(BlocksReg.CENTERED_WHEEL_MOUNT)
+                    .register();
+
+    public static final BlockEntityEntry<MotoWheelMountBlockEntity> MOTO_WHEEL_MOUNT =
+            Simulatedextra.REGISTRATE.blockEntity("moto_wheel_mount", MotoWheelMountBlockEntity::new)
+                    .validBlocks(BlocksReg.MOTO_WHEEL_MOUNT)
                     .register();
 
     public static final BlockEntityEntry<LinkingRedstoneLinkBlockEntity> LINKING_REDSTONE_LINK =

@@ -6,4 +6,6 @@ public interface IFrequencyAccess {
     LinkBehaviour simulatedextra$getLink();
     void simulatedextra$setLink(LinkBehaviour link);
     boolean simulatedextra$isTransmitter();
+    boolean simulatedextra$getReceivedSignalChanged();
+    void simulatedextra$setReceivedSignalChanged(boolean value);
 }

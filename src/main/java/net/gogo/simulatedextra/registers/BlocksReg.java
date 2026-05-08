@@ -1,6 +1,7 @@
 package net.gogo.simulatedextra.registers;
 
 import com.simibubi.create.AllTags.AllBlockTags;
+import com.simibubi.create.content.logistics.packagerLink.LogisticallyLinkedBlockItem;
 import com.simibubi.create.content.redstone.link.RedstoneLinkGenerator;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -41,7 +42,7 @@ public class BlocksReg {
                     .transform(axeOrPickaxe())
                     .tag(AllBlockTags.BRITTLE.tag, AllBlockTags.SAFE_NBT.tag)
                     .blockstate(new RedstoneLinkGenerator()::generate)
-                    .item()
+                    .item(LogisticallyLinkedBlockItem::new)
                     .transform(customItemModel("_", "transmitter"))
                     .register();
 

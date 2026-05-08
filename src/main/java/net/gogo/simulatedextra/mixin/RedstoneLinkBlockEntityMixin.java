@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 public class RedstoneLinkBlockEntityMixin implements IFrequencyAccess {
     @Shadow private LinkBehaviour link;
     @Shadow private boolean transmitter;
+    @Shadow private boolean receivedSignalChanged;
     @Override
     public LinkBehaviour simulatedextra$getLink() {
         return link;
@@ -23,5 +24,15 @@ public class RedstoneLinkBlockEntityMixin implements IFrequencyAccess {
     @Override
     public boolean simulatedextra$isTransmitter() {
         return transmitter;
+    }
+
+    @Override
+    public boolean simulatedextra$getReceivedSignalChanged() {
+        return receivedSignalChanged;
+    }
+
+    @Override
+    public void simulatedextra$setReceivedSignalChanged(boolean value) {
+        receivedSignalChanged = value;
     }
 }

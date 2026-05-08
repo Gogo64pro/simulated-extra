@@ -3,7 +3,6 @@ package net.gogo.simulatedextra.registers;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.gogo.simulatedextra.Simulatedextra;
 import net.gogo.simulatedextra.content.centered_wheel_mount.CenteredWheelMountBlockEntity;
-import net.gogo.simulatedextra.content.linking_redstone_link.IdLinkBlockEntityRenderer;
 import net.gogo.simulatedextra.content.linking_redstone_link.LinkingRedstoneLinkBlockEntity;
 
 public class BlockEntityTypes {
@@ -18,7 +17,6 @@ public class BlockEntityTypes {
     public static final BlockEntityEntry<LinkingRedstoneLinkBlockEntity> LINKING_REDSTONE_LINK =
             Simulatedextra.REGISTRATE.blockEntity("linking_redstone_link", LinkingRedstoneLinkBlockEntity::new)
                     .validBlocks(BlocksReg.LINKING_REDSTONE_LINK)
-                    .renderer(() -> IdLinkBlockEntityRenderer::new)
                     .register();
 
     public static void register() {

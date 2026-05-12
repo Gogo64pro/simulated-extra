@@ -32,6 +32,7 @@ public class WheelMountBlockEntity extends KineticBlockEntity {
     }
     public double getLerpedExtension(float pt){return 0;}
     public float getLerpedAngle(float pt){return 0;}
+    protected double getChasingYaw(){return -1;}
 
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {

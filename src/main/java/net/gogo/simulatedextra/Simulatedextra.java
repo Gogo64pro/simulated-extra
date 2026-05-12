@@ -3,6 +3,7 @@ package net.gogo.simulatedextra;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import dev.simulated_team.simulated.registrate.SimulatedRegistrate;
 import net.gogo.simulatedextra.content.centered_wheel_mount.CenteredWheelMountRenderer;
+import net.gogo.simulatedextra.content.chained_centered_wheel_mount.ChainDrivablePartialModels;
 import net.gogo.simulatedextra.registers.BlockEntityTypes;
 import net.gogo.simulatedextra.registers.BlocksReg;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -39,12 +40,17 @@ public class Simulatedextra {
         REGISTRATE.registerEventListeners(modEventBus);
         BlocksReg.register();
         BlockEntityTypes.register();
+        ChainDrivablePartialModels.init();
         SimulatedRegistrate.TAB_ITEMS.add(CENTERED_WHEEL_MOUNT::asItem);
         SimulatedRegistrate.ITEM_TO_SECTION.put(
                 ResourceLocation.fromNamespaceAndPath(Simulatedextra.ID, "centered_wheel_mount"),
                 ResourceLocation.fromNamespaceAndPath("offroad", "offroad")
         );
 
+    }
+
+    public static ResourceLocation path(String s) {
+        return ResourceLocation.fromNamespaceAndPath(ID, s);
     }
 
     private void onClientSetup(FMLClientSetupEvent event) {

@@ -6,6 +6,7 @@ import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.gogo.simulatedextra.Simulatedextra;
 import net.gogo.simulatedextra.content.centered_wheel_mount.CenteredWheelMountBlock;
+import net.gogo.simulatedextra.content.chained_centered_wheel_mount.ChainDrivableWheelMount;
 import net.gogo.simulatedextra.content.linking_redstone_link.LinkingRedstoneLinkBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
@@ -19,6 +20,19 @@ public class BlocksReg {
 
     public static final BlockEntry<CenteredWheelMountBlock> CENTERED_WHEEL_MOUNT =
             Simulatedextra.REGISTRATE.block("centered_wheel_mount", CenteredWheelMountBlock::new)
+                    .properties(properties -> properties
+                            .mapColor(MapColor.COLOR_GRAY)
+                            .noOcclusion()
+                            .isRedstoneConductor((state, level, pos) -> false)
+                            .strength(3.5f, 3.5f)
+                            .sound(SoundType.STONE)
+                            .requiresCorrectToolForDrops()
+                    )
+                    .simpleItem()
+                    .register();
+
+    public static final BlockEntry<ChainDrivableWheelMount> CHAIN_DRIVABLE_WHEEL_MOUNT =
+            Simulatedextra.REGISTRATE.block("chain_drivable_wheel_mount", ChainDrivableWheelMount::new)
                     .properties(properties -> properties
                             .mapColor(MapColor.COLOR_GRAY)
                             .noOcclusion()

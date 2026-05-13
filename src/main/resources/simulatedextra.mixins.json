@@ -9,7 +9,9 @@
     "CenteredWheelMountPhysicsMixin",
     "RedstoneLinkBlockEntityMixin",
     "SuspensionStrengthBehaviour",
-    "SuspensionStrengthValueBoxMixin"
+    "SuspensionStrengthValueBoxMixin",
+    "ThrottleLeverBlockEntityMixin",
+    "ThrottleLeverBlockMixin"
   ],
   "client": [
   ],

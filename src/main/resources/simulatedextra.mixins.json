@@ -11,7 +11,9 @@
     "RedstoneLinkBlockEntityMixin",
     "RotationPropagatorMixin",
     "SuspensionStrengthBehaviour",
-    "SuspensionStrengthValueBoxMixin"
+    "SuspensionStrengthValueBoxMixin",
+    "ThrottleLeverBlockEntityMixin",
+    "ThrottleLeverBlockMixin"
   ],
   "client": [
   ],

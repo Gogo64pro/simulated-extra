@@ -5,9 +5,9 @@ import net.gogo.simulatedextra.Simulatedextra;
 
 public class ChainDrivablePartialModels {
     public static final PartialModel CHAIN_TOP
-            = PartialModel.of(Simulatedextra.path("models/block/chain_wheel_mount_tpp"));
+            = PartialModel.of(Simulatedextra.path("block/chain_wheel_mount_top"));
     public static final PartialModel CHAIN_BOTTOM
-            = PartialModel.of(Simulatedextra.path("models/block/chain_wheel_mount_bottom"));
+            = PartialModel.of(Simulatedextra.path("block/chain_wheel_mount_bottom"));
 
     public static void init() {}
 }

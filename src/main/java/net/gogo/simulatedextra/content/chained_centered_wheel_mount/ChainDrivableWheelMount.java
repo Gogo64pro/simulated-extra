@@ -1,8 +1,12 @@
 package net.gogo.simulatedextra.content.chained_centered_wheel_mount;
 
+import com.simibubi.create.content.kinetics.base.IRotate;
 import com.simibubi.create.content.kinetics.chainDrive.ChainDriveBlock;
+import dev.ryanhcode.offroad.content.blocks.wheel_mount.WheelMountBlock;
+import dev.simulated_team.simulated.util.extra_kinetics.ExtraKinetics;
+import net.gogo.simulatedextra.content.chained_centered_wheel_mount.ChainDrivableWheelMountBlockEntity;
 import net.createmod.catnip.data.Iterate;
-import net.gogo.simulatedextra.content.centered_wheel_mount.CenteredWheelMountBlock;
+import net.gogo.simulatedextra.registers.BlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -10,6 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import org.jetbrains.annotations.NotNull;
@@ -17,11 +22,17 @@ import org.jetbrains.annotations.NotNull;
 import static com.simibubi.create.content.kinetics.chainDrive.ChainDriveBlock.CONNECTED_ALONG_FIRST_COORDINATE;
 import static com.simibubi.create.content.kinetics.chainDrive.ChainDriveBlock.PART;
 
-public class ChainDrivableWheelMount extends CenteredWheelMountBlock implements IChainDrivable {
+public class ChainDrivableWheelMount extends WheelMountBlock implements IChainDrivable, ExtraKinetics.ExtraKineticsBlock {
     public ChainDrivableWheelMount(Properties properties) {
         super(properties);
         registerDefaultState(defaultBlockState().setValue(PART, ChainDriveBlock.Part.NONE));
     }
+
+    @Override
+    public BlockEntityType<? extends ChainDrivableWheelMountBlockEntity> getBlockEntityType() {
+        return BlockEntityTypes.CHAIN_DRIVABLE_WHEEL_MOUNT.get();
+    }
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
@@ -93,6 +104,12 @@ public class ChainDrivableWheelMount extends CenteredWheelMountBlock implements 
 
     @Override
     public boolean hasShaftTowards(LevelReader world, BlockPos pos, BlockState state, Direction face) {
-        return super.hasShaftTowards(world, pos, state, face) || face == Direction.UP;
+        var direction = state.getValue(HORIZONTAL_FACING);
+        return face == direction || face == direction.getOpposite();
+    }
+
+    @Override
+    public IRotate getExtraKineticsRotationConfiguration() {
+        return ChainDrivableWheelMountBlockEntity.SteeringShaftBlockEntity.ROTATION_CONFIG;
     }
 }

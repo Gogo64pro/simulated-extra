@@ -18,6 +18,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -44,7 +45,7 @@ public class ChainDrivableWheelMountRenderer extends KineticBlockEntityRenderer<
                               MultiBufferSource buffer, int light, int overlay) {
         final BlockState state = this.getRenderedBlockState(be);
         final RenderType type = this.getRenderType(be, state);
-        final VertexConsumer vb = buffer.getBuffer(RenderType.cutoutMipped());
+        final VertexConsumer vb = buffer.getBuffer(type);
 
         // --- Stationary top ---
         final SuperByteBuffer top = CachedBuffers.partial(ChainDrivablePartialModels.CHAIN_TOP, be.getBlockState());
@@ -54,7 +55,16 @@ public class ChainDrivableWheelMountRenderer extends KineticBlockEntityRenderer<
         // Driven by the shaft via renderRotatingBuffer, same as the superclass shaft rendering.
         // getRenderedBlockState returns a Y-axis shaft blockstate since the shaft faces down.
         final SuperByteBuffer bottom = CachedBuffers.partial(ChainDrivablePartialModels.CHAIN_BOTTOM, be.getBlockState());
-        renderRotatingBuffer(be, bottom, ms, buffer.getBuffer(type), light);
+        final BlockPos pos = be.getBlockPos();
+        float angle = KineticBlockEntityRenderer.getAngleForBe(be.steeringShaft, pos, Direction.Axis.Y);
+
+        KineticBlockEntityRenderer.kineticRotationTransform(
+                bottom,
+                be,
+                Direction.Axis.Y,
+                angle,
+                light
+        ).renderInto(ms, buffer.getBuffer(type));
 
         FilteringRenderer.renderOnBlockEntity(be, partialTicks, ms, buffer, light, overlay);
 

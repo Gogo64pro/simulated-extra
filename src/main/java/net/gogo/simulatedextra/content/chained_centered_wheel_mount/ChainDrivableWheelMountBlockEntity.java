@@ -75,7 +75,7 @@ public class ChainDrivableWheelMountBlockEntity extends WheelMountBlockEntity im
 
     @Override
     public boolean shouldConnectExtraKinetics() {
-        return true;
+        return false;
     }
 
     @Override
@@ -178,12 +178,20 @@ public class ChainDrivableWheelMountBlockEntity extends WheelMountBlockEntity im
         }
 
         @Override
+        public String formatValue() {
+            return Component.translatable(
+                    value == MODE_REDSTONE
+                            ? "block.simulatedextra.chain_drivable_wheel_mount.mode.redstone"
+                            : "block.simulatedextra.chain_drivable_wheel_mount.mode.shaft"
+            ).toString();
+        }
+
+        @Override
         public ValueSettingsBoard createBoard(Player player, BlockHitResult hitResult) {
             return new ValueSettingsBoard(
-                    this.label, MODE_SHAFT, 1,
+                    this.label, MODE_SHAFT, 50,
                     ImmutableList.of(
-                            Component.translatable("block.simulatedextra.chain_drivable_wheel_mount.mode.redstone"),
-                            Component.translatable("block.simulatedextra.chain_drivable_wheel_mount.mode.shaft")
+                            label
                     ),
                     new ValueSettingsFormatter(settings -> Component.translatable(
                             settings.value() == MODE_REDSTONE

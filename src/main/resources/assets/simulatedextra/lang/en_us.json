@@ -2,6 +2,7 @@
   "block.simulatedextra.centered_wheel_mount": "Centered Wheel Mount",
   "simulatedextra.frequency": "Frequency",
   "block.simulatedextra.chain_drivable_wheel_mount.mode": "Mode",
-  "block.simulatedextra.chain_drivable_wheel_mount.steering_shaft": "Shaft",
-  "block.simulatedextra.chain_drivable_wheel_mount.mode.redstone": "Redstone"
+  "block.simulatedextra.chain_drivable_wheel_mount.steering_shaft": "Steering Shaft",
+  "block.simulatedextra.chain_drivable_wheel_mount.mode.redstone": "Redstone",
+  "block.simulatedextra.chain_drivable_wheel_mount.mode.shaft": "Shaft"
 }
